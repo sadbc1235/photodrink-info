@@ -1,0 +1,129 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #333;
+}
+
+#wrap {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+#wrap section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+#wrap section article {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transition: 1s;
+  overflow: hidden;
+}
+#wrap section article .frame-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 100%;
+  filter: saturate(0.2) brightness(0.5);
+  transition: 1s 0.3s;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+#wrap section article .frame-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#wrap section article .booth-info {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: 1s;
+}
+#wrap section article .booth-info.hide {
+  opacity: 0;
+}
+#wrap section article .booth-info h1 {
+  font-size: 4rem;
+  margin-bottom: 30px;
+  transition: 1s;
+}
+#wrap section article .booth-info p {
+  font-size: 2rem;
+  margin-bottom: 300px;
+}
+#wrap section article .booth-info .guide-map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  width: 600px;
+  height: 600px;
+  background: #fff;
+  font-size: 4rem;
+  color: #000;
+  opacity: 0;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
+}
+#wrap section article .booth-info .guide-map.show {
+  opacity: 0.3;
+}
+#wrap section article .booth-info .btn-close {
+  position: absolute;
+  top: 0px;
+  right: -20%;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  transition: 0.5s;
+}
+#wrap section article .booth-info .btn-close svg {
+  fill: #fff;
+}
+#wrap section article .booth-info .btn-close.show {
+  opacity: 1;
+}
+#wrap section article .forBtn {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 640px;
+  height: 100%;
+  z-index: 99;
+}
+#wrap section article.show {
+  flex: 10;
+}
+#wrap section article.show .frame-img {
+  width: 40%;
+  filter: saturate(1.2) brightness(1);
+}
+#wrap section article.show .booth-info {
+  top: 10%;
+  left: 45%;
+}
+#wrap section article.show .booth-info h1 {
+  color: #c92933;
+}
+
+/*# sourceMappingURL=style.css.map */
