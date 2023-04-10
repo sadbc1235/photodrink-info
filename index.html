@@ -6,14 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
     <div id="wrap">
         <section>
             <article>
                 <div class="frame-img">
-                    <img src="/images/bust/bustmain1.png" alt="">
+                    <div class="swiper bustSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="/images/bust/bustmain1.png" alt=""></div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide">Slide 4</div>
+                            <div class="swiper-slide">Slide 5</div>
+                            <div class="swiper-slide">Slide 6</div>
+                            <div class="swiper-slide">Slide 7</div>
+                            <div class="swiper-slide">Slide 8</div>
+                            <!-- <div class="swiper-slide">Slide 9</div> -->
+                        </div>
+                    </div>
                 </div>
                 <div class="booth-info name-bust">
                     <h1 class="booth-name">BUST SHOT</h1>
@@ -34,7 +70,19 @@
             </article>
             <article>
                 <div class="frame-img">
-                    <img src="/images/metal/metal4.png" alt="">
+                    <div class="swiper metalSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="/images/metal/metal4.png" alt=""></div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide">Slide 4</div>
+                            <div class="swiper-slide">Slide 5</div>
+                            <div class="swiper-slide">Slide 6</div>
+                            <div class="swiper-slide">Slide 7</div>
+                            <div class="swiper-slide">Slide 8</div>
+                            <div class="swiper-slide">Slide 9</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="booth-info name-metal">
                     <h1 class="booth-name">METAL</h1>
@@ -55,7 +103,19 @@
             </article>
             <article>
                 <div class="frame-img">
-                    <img src="/images/full/fullshot5.jpg" alt="">
+                    <div class="swiper fullSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="/images/full/fullshot5.jpg" alt=""></div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide">Slide 4</div>
+                            <div class="swiper-slide">Slide 5</div>
+                            <div class="swiper-slide">Slide 6</div>
+                            <div class="swiper-slide">Slide 7</div>
+                            <div class="swiper-slide">Slide 8</div>
+                            <div class="swiper-slide">Slide 9</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="booth-info name-full">
                     <h1 class="booth-name">FULL SHOT</h1>
@@ -76,7 +136,19 @@
             </article>
             <article>
                 <div class="frame-img">
-                    <img src="/images/dynamic/dynamic2.png" alt="">
+                    <div class="swiper dynaSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="/images/dynamic/dynamic2.png" alt=""></div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide">Slide 4</div>
+                            <div class="swiper-slide">Slide 5</div>
+                            <div class="swiper-slide">Slide 6</div>
+                            <div class="swiper-slide">Slide 7</div>
+                            <div class="swiper-slide">Slide 8</div>
+                            <div class="swiper-slide">Slide 9</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="booth-info name-dyna">
                     <h1 class="booth-name">DYNAMIC</h1>
@@ -98,12 +170,21 @@
         </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
         let isSlideOpen = false
         $(document).ready(function(){
+            initElements();
+
             initFunctions();
         });
+
+        const initElements = () => {
+            bustSwiper.autoplay.stop();
+            metalSwiper.autoplay.stop();
+            fullSwiper.autoplay.stop();
+            dynaSwiper.autoplay.stop();
+        }
 
         const initFunctions = () => {
             $('#bust').click(() => {
@@ -148,6 +229,7 @@
                     $(`.${boothNameMap[type]}`).children('.guide-map').addClass('show');
                     setTimeout(() => {
                         $(`.${boothNameMap[type]}`).children('.btn-close').addClass('show');
+                        playSlides(type);
                     }, 200);
                 }, 1000);
             }, 600);
@@ -160,6 +242,7 @@
 
         const closeSlide = () => {
             $('.btn-close').removeClass('show');
+            resetSlides();
             setTimeout(() => {
                 $('.guide-map').removeClass('show');
                 setTimeout(() => {
@@ -171,6 +254,72 @@
                 }, 400);
             }, 300);
         }
+
+        const playSlides = (type) => {
+            swiperMap = {
+                'bust' : bustSwiper
+                , 'metal' : metalSwiper
+                , 'full' : fullSwiper
+                , 'dyna' : dynaSwiper
+            }
+
+            swiperMap[type].autoplay.start();
+        }
+
+        const resetSlides = (type) => {
+            bustSwiper.autoplay.stop();
+            bustSwiper.slideTo(1, 500);
+            metalSwiper.autoplay.stop();
+            metalSwiper.slideTo(1);
+            fullSwiper.autoplay.stop();
+            fullSwiper.slideTo(1);
+            dynaSwiper.autoplay.stop();
+            dynaSwiper.slideTo(1);
+        }
+
+        const bustSwiper = new Swiper(".bustSwiper", {
+            lazy: true
+            , loop: false
+            , centeredSlides: true
+            , spaceBetween: 30
+            , autoplay: {
+                delay: 2500
+                , disableOnInteraction: false
+            }
+        });
+
+        const metalSwiper = new Swiper(".metalSwiper", {
+            lazy: true
+            , loop: true
+            , centeredSlides: true
+            , spaceBetween: 30
+            , autoplay: {
+                delay: 2500
+                , disableOnInteraction: false
+            }
+        });
+
+        const fullSwiper = new Swiper(".fullSwiper", {
+            lazy: true
+            , loop: true
+            , centeredSlides: true
+            , spaceBetween: 30
+            , autoplay: {
+                delay: 2500
+                , disableOnInteraction: false
+            }
+        });
+
+        const dynaSwiper = new Swiper(".dynaSwiper", {
+            lazy: true
+            , loop: true
+            , centeredSlides: true
+            , spaceBetween: 30
+            , autoplay: {
+                delay: 2500
+                , disableOnInteraction: false
+            }
+        });
     </script>
 </body>
 </html>
